@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from uuid import UUID, uuid4
 
 from sqlmodel import Field, Relationship
@@ -17,24 +17,3 @@ class Blog(BaseModel, table=True):
     author_id: UUID = Field(index=True)
     project_id: Optional[UUID] = Field(default=None, index=True)
 
-    author: Optional["User"] = Relationship(
-        back_populates="blogs",
-        sa_relationship_kwargs={
-            "primaryjoin": "foreign(Blog.author_id) == User.id",
-            "viewonly": True,
-        }
-    )
-    project: Optional["Project"] = Relationship(
-        back_populates="blogs",
-        sa_relationship_kwargs={
-            "primaryjoin": "foreign(Blog.project_id) == Project.id",
-            "viewonly": True,
-        }
-    )
-    blog_tags: list["BlogTag"] = Relationship(
-        back_populates="blog"
-    )
-
-    @property
-    def tags(self) -> list["Tag"]:
-        return [bt.tag for bt in self.blog_tags]

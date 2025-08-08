@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from uuid import UUID, uuid4
 
 from sqlmodel import Field, Relationship
@@ -12,5 +12,3 @@ class Project(BaseModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     name: str
     description: Optional[str] = None
-
-    blogs: list["Blog"] = Relationship(back_populates="project")

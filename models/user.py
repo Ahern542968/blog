@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from uuid import UUID, uuid4
 
 from sqlmodel import Field, Relationship
@@ -11,8 +11,8 @@ class User(BaseModel, table=True):
 
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     username: str = Field(index=True)
-    email: str
+    hash_password: str
+
+    email: Optional[str] = Field(default=None, description="邮箱")
     position: Optional[str] = Field(default=None, description="职位")
     bio: Optional[str] = Field(default=None, description="个人简介")
-
-    blogs: list["Blog"] = Relationship(back_populates="author")

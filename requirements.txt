@@ -4,3 +4,7 @@ SQLAlchemy~=2.0.42
 pydantic-settings~=2.10.1
 sqlmodel~=0.0.24
 alembic~=1.16.4
+passlib~=1.7.4
+uvicorn~=0.35.0
+PyJWT~=2.10.1
+starlette~=0.47.2
