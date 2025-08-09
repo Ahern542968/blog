@@ -35,7 +35,9 @@ def create_app():
     register_exception_handlers(app)
 
     from resources.users import router as users_router
+    from resources.admin.tags import router as admin_tags_router
     app.include_router(users_router, prefix=settings.ROUTER_PREFIX)
+    app.include_router(admin_tags_router, prefix=settings.ROUTER_PREFIX)
 
     for route in app.routes:
         print(f"{route.path} -> {','.join(route.methods)}")

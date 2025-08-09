@@ -6,7 +6,7 @@ import sqlalchemy.dialects.postgresql as pg
 from sqlmodel import SQLModel, Field, Column
 
 
-class BaseModel(SQLModel):
+class BaseModel(SQLModel, table=False):
 
     id: UUID = Field(
         sa_column=Column(pg.UUID, primary_key=True, unique=True, default=uuid4),

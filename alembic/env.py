@@ -4,6 +4,11 @@ from alembic import context
 from sqlmodel import SQLModel
 
 from middleware.db.postgresql import init_sync_engine
+from models.blog import Blog
+from models.blog_tag import BlogTag
+from models.project import Project
+from models.tag import Tag
+from models.user import User
 
 config = context.config
 
